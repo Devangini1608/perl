@@ -60,26 +60,26 @@ if ($len1>$len2) {
     print "----------------------------------------------------------------------\n";
 
 
-    my $l2=0;
+    my $21=0;
     
-    foreach my $line_f1 (@f1_contents) {
-        chomp($line_f1);
-        if ( defined( $f2_contents[$l2] ) ) {
+    foreach my $line_f2 (@f1_contents) {
+        chomp($line_f2);
+        if ( defined( $f1_contents[$21] ) ) {
 
-            # line exists in second file
-            chomp( my $line_f2 = $f2_contents[$l2] );
-            if ( $line_f1 ne $line_f2 ) {
-                print "\nline " . ( $l2 + 1 ) . " \n";
-                print "< $line_f1 \n" if ( $line_f1 ne "" );
+            # line exists in first file
+            chomp( my $line_f1 = $f1_contents[$l2] );
+            if ( $line_f2 ne $line_f1 ) {
+                print "\nline " . ( $21 + 1 ) . " \n";
+                print "< $line_f2 \n" if ( $line_f2 ne "" );
                 print "--- \n";
-                print "> $line_f2 \n\n" if ( $line_f2 ne "" );
+                print "> $line_f1 \n\n" if ( $line_f1 ne "" );
             }
         }
         else {
 
-            # there is no line in second file
-            print "\nline " . ( $l2 + 1 ) . " \n";
-            print "< $line_f1 \n" if ( $line_f1 ne "" );
+            # there is no line in first file
+            print "\nline " . ( $21 + 1 ) . " \n";
+            print "< $line_f2 \n" if ( $line_f2 ne "" );
             print "--- \n";
             print "> \n";    
         }
@@ -88,44 +88,44 @@ if ($len1>$len2) {
 }
 else {
     if($len1==$len2){
-	#second file given as the argument has more no of lines than the first file
-	print "$f1 and $f2 contain equal no. of lines\n";
+	#first file given as the argument has more no of lines than the second file
+	print "$f2 and $f1 contain equal no. of lines\n";
 	print "----------------------------------------------------------------------\n";    
 }
     else{
 	#both the files have equal no of lines
-    	print "$f2 contains more lines than $f1\n";
+    	print "$f1 contains more lines than $f2\n";
         print "----------------------------------------------------------------------\n";
 	} 
     
     my $l1 = 0;
-    foreach my $line_f2 (@f2_contents) {
-        chomp($line_f2);
-        if ( defined( $f1_contents[$l1] ) ) {
+    foreach my $line_f1 (@f1_contents) {
+        chomp($line_f1);
+        if ( defined( $f2_contents[$l1] ) ) {
 
             # line exists in first file
-            chomp( my $line_f1 = $f1_contents[$l1] );
-            if ( $line_f1 ne $line_f2 ) {
+            chomp( my $line_f2 = $f2_contents[$l1] );
+            if ( $line_f2 ne $line_f1 ) {
                 print "\nline " . ( $l1 + 1 ) . " \n";
-                print "< $line_f1 \n" if ( $line_f1 ne "" );
+                print "< $line_f2 \n" if ( $line_f2 ne "" );
                 print "--- \n";
-                print "> $line_f2 \n" if ( $line_f2 ne "" );
+                print "> $line_f1 \n" if ( $line_f1 ne "" );
             }
         }
         else {
 
             # there is no line in first file
             print "\nline " . ( $l1 + 1 ) . " \n";
-            print "< \n";    # this line does not exist in f1
+            print "< \n";    # this line does not exist in f2
             print "--- \n";
-            print "> $line_f2 \n" if ( $line_f2 ne "" );
+            print "> $line_f1 \n" if ( $line_f1 ne "" );
         }
         $l1++;         # point to next line in f1
     }
 }
 }
 if($res==2){
-my $diff= diff($f1,$f2,{STYLE => "OldStyle"});
+my $diff= diff($f2,$f1,{STYLE => "OldStyle"});
 print $diff;
 }
 print "Do you want to continue?(yes=1,no=0)\n";
